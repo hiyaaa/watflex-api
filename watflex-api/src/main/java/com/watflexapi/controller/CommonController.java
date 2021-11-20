@@ -17,6 +17,6 @@ public class CommonController {
 	@RequestMapping(path = "/SibalGut")
 	public String LoginChk(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
 		System.out.println(param);
-		return "¾¾¹ß";
+		return "¾¾¹ß123455555123";
 	}
 }

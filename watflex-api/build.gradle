@@ -27,6 +27,8 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile("org.springframework.boot:spring-boot-devtools")
+	compile files("libs/kobis-opcl-rest-v1.0.jar")
 }
 
 
