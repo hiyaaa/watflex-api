@@ -29,6 +29,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile files("libs/kobis-opcl-rest-v1.0.jar")
+	
+	implementation 'org.jsoup:jsoup:1.14.3'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	
 }
 
 
