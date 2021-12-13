@@ -68,6 +68,18 @@ public class CommonController {
 		UtilEtc.responseJsonValue(response, resultMap);
 	}
 	
+	@RequestMapping(path = "/updateUser")
+	public void updateUser(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("updateUser param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.updateUser(param);
+		
+		resultMap.put("succ", succ);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
 	@RequestMapping(path = "/selectMovieReplyList")
 	public void selectMovieReply(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
 		System.out.println("selectMovieReplyList param - " + param);
@@ -187,6 +199,8 @@ public class CommonController {
 		
 		UtilEtc.responseJsonValue(response, resultMap);
 	}
+	
+	/////////////////////////////////////////////////////////////////////////////// 여기부터는 영화진흥회 API
 	
 	@RequestMapping(path = "/getComCodeList") //공통코드
 	public void getComCodeList(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{

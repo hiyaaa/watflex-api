@@ -24,6 +24,10 @@ public class CommonSercieImpl implements CommonService {
 		return commonMapper.selectUser(userNo);
 	}
 	
+	public Integer updateUser(HashMap<String, Object> param) throws Exception{
+		return commonMapper.updateUser(param);
+	}
+	
 	public List<HashMap<String, Object>> selectMovieReplyList(String movieCd) throws Exception{
 		return commonMapper.selectMovieReplyList(movieCd);
 	}

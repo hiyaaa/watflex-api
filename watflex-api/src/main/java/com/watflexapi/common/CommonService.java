@@ -11,6 +11,8 @@ public interface CommonService {
 	
 	public HashMap<String, Object> selectUser(String userNo) throws Exception;
 	
+	public Integer updateUser(HashMap<String, Object> param) throws Exception;
+	
 	public List<HashMap<String, Object>> selectMovieReplyList(String movieCd) throws Exception;
 	
 	public Integer insertMovieReply(HashMap<String, Object> param) throws Exception;

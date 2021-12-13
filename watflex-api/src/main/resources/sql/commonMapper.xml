@@ -3,7 +3,7 @@
 <mapper namespace="com.watflexapi.common.CommonMapper">
 
 	<insert id="insertUser" parameterType="java.util.HashMap">
-		INSERT INTO W_USER VALUES (#{userId}, #{userName}, #{userPw}, #{email})
+		INSERT INTO W_USER VALUES (#{userId}, #{userName}, #{userPw}, #{email}, NOW(), NOW())
 	</insert>
 
 	<select id="selectLoginCheck" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -18,6 +18,15 @@
 		FROM W_USER 
 		WHERE USERNO = #{userNo}
 	</select>
+	
+	<update id="updateUser" parameterType="java.util.HashMap">
+		UPDATE W_USER
+		SET USER_NAME = #{title}
+			, USER_PW = #{userPw}
+			, EMAIL = #{email}
+			, UPDATE_DTM = NOW()
+		WHERE USERNO = #{userNo}
+	</update>
 	
 	<select id="selectMovieReplyList" parameterType="String" resultType="java.util.HashMap">
 		SELECT MR.REPLYNO, MR.MOVIECD, MR.USERNO, UR.USER_NAME, MR.COMMENT, MR.CREATE_DTM
@@ -51,13 +60,13 @@
 		INSERT INTO W_BRD VALUES (#{userNo}, #{title}, #{content}, NOW(), NOW())
 	</insert>
 	
-	<insert id="updateBrd" parameterType="java.util.HashMap">
+	<update id="updateBrd" parameterType="java.util.HashMap">
 		UPDATE W_BRD
 		SET TITLE = #{title}
 			, CONTENT = #{content}
 			, UPDATE_DTM = NOW()
 		WHERE BRDNO = #{brdNo}
-	</insert>
+	</update>
 	
 	<delete id="deleteBrd" parameterType="String">
 		DELETE FROM W_BRD WHERE BRDNO = #{brdNo}
