@@ -2,10 +2,80 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.watflexapi.common.CommonMapper">
 
-	<select id="selectUser" parameterType="String" resultType="java.util.HashMap">
+	<insert id="insertUser" parameterType="java.util.HashMap">
+		INSERT INTO W_USER VALUES (#{userId}, #{userName}, #{userPw}, #{email})
+	</insert>
+
+	<select id="selectLoginCheck" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		SELECT *
 		FROM W_USER 
 		WHERE USER_ID = #{userId}
+			AND USER_PW = #{userPw}
 	</select>
+
+	<select id="selectUser" parameterType="String" resultType="java.util.HashMap">
+		SELECT *
+		FROM W_USER 
+		WHERE USERNO = #{userNo}
+	</select>
+	
+	<select id="selectMovieReplyList" parameterType="String" resultType="java.util.HashMap">
+		SELECT MR.REPLYNO, MR.MOVIECD, MR.USERNO, UR.USER_NAME, MR.COMMENT, MR.CREATE_DTM
+		FROM W_MOVIE_REPLY MR
+		INNER JOIN W_USER UR ON MR.USERNO = UR.USERNO
+		WHERE MR.MOVIECD = #{movieCd}
+	</select>
+	
+	<insert id="insertMovieReply" parameterType="java.util.HashMap">
+		INSERT INTO W_MOVIE_REPLY VALUES (#{movieCd}, #{userNo}, #{comment}, NOW())
+	</insert>
+	
+	<delete id="deleteMovieReply" parameterType="String">
+		DELETE FROM W_MOVIE_REPLY WHERE REPLYNO = #{replyNo}
+	</delete>
+	
+	<select id="selectBrdList" parameterType="String" resultType="java.util.HashMap">
+		SELECT BD.BRDNO, BD.USERNO, UR.USER_NAME, BD.TITLE, BD.CONTENT, BD.CREATE_DTM
+		FROM W_BRD BD
+		INNER JOIN W_USER UR ON BD.USERNO = UR.USERNO
+		WHERE 1=1
+		<if test="title ! = null and title != ''">
+			AND BD.TITLE LIKE CONCAT('%', #{title}, '%')
+		</if>
+		<if test="userNo ! = null and userNo != ''">
+			AND BD.USERNO LIKE CONCAT('%', #{userNo}, '%')
+		</if>
+	</select>
+	
+	<insert id="insertBrd" parameterType="java.util.HashMap">
+		INSERT INTO W_BRD VALUES (#{userNo}, #{title}, #{content}, NOW(), NOW())
+	</insert>
+	
+	<insert id="updateBrd" parameterType="java.util.HashMap">
+		UPDATE W_BRD
+		SET TITLE = #{title}
+			, CONTENT = #{content}
+			, UPDATE_DTM = NOW()
+		WHERE BRDNO = #{brdNo}
+	</insert>
+	
+	<delete id="deleteBrd" parameterType="String">
+		DELETE FROM W_BRD WHERE BRDNO = #{brdNo}
+	</delete>
+	
+	<select id="selectBrdReplyList" parameterType="String" resultType="java.util.HashMap">
+		SELECT BR.REPLYNO, BR.USERNO, UR.USER_NAME, BR.COMMENT, BR.CREATE_DTM
+		FROM W_BRD_REPLY BR
+		INNER JOIN W_USER UR ON BR.USERNO = UR.USERNO
+		WHERE BR.BRDNO = #{brdNo}
+	</select>
+	
+	<insert id="insertBrdReply" parameterType="java.util.HashMap">
+		INSERT INTO W_BRD_REPLY VALUES (#{brdNo}, #{userNo}, #{comment}, NOW())
+	</insert>
+	
+	<delete id="deleteBrdReply" parameterType="String">
+		DELETE FROM W_BRD_REPLY WHERE REPLYNO = #{replyNo}
+	</delete>
 	
 </mapper>

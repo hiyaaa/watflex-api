@@ -1,6 +1,7 @@
 package com.watflexapi.common;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,14 +32,158 @@ public class CommonController {
 	@Value("${api.key}")
     private String apiKey;
 	
+	@RequestMapping(path = "/registUser")
+	public void userRegist(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("registUser param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.inserUser(param);
+		
+		resultMap.put("succ", succ);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/loginCheck")
+	public void loginCheck(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("loginCheck param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		HashMap<String, Object> userInfo = commonService.selectLoginCheck(param);
+		
+		resultMap.put("userInfo", userInfo);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
 	@RequestMapping(path = "/getUser")
 	public void getUser(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
-		System.out.println(param);
+		System.out.println("getUser param - " + param);
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
 		HashMap<String, Object> userInfo = commonService.selectUser(String.valueOf(param.get("userId")));
 		
 		resultMap.put("userInfo", userInfo);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/selectMovieReplyList")
+	public void selectMovieReply(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("selectMovieReplyList param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		List<HashMap<String, Object>> replyList = commonService.selectMovieReplyList(String.valueOf(param.get("movieCd")));
+		
+		resultMap.put("replyList", replyList);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/insertMovieReply")
+	public void insertMovieReply(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("insertMovieReply param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.insertMovieReply(param);
+		
+		resultMap.put("succ", succ);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/deleteMovieReply")
+	public void deleteMovieReply(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("deleteMovieReply param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.deleteMovieReply(String.valueOf(param.get("replyNo")));
+		
+		resultMap.put("succ", succ);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/selectBrdList")
+	public void selectBrd(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("selectBrdList param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		List<HashMap<String, Object>> brdList = commonService.selectBrdList(param);
+		
+		resultMap.put("brdList", brdList);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/insertBrd")
+	public void insertBrd(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("insertBrd param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.insertBrd(param);
+		
+		resultMap.put("succ", succ);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/updateBrd")
+	public void updateBrd(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("updateBrd param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.updateBrd(param);
+		
+		resultMap.put("succ", succ);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/deleteBrd")
+	public void deleteBrd(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("deleteBrd param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.deleteBrd(String.valueOf(param.get("brdNo")));
+		
+		resultMap.put("succ", succ);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/selectBrdReplyList")
+	public void selectBrdReplyList(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("selectBrdReplyList param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		List<HashMap<String, Object>> replyList = commonService.selectBrdReplyList(String.valueOf(param.get("brdNo")));
+		
+		resultMap.put("replyList", replyList);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/insertBrdReply")
+	public void insertBrdReply(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("insertBrdReply param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.insertBrdReply(param);
+		
+		resultMap.put("succ", succ);
+		
+		UtilEtc.responseJsonValue(response, resultMap);
+	}
+	
+	@RequestMapping(path = "/deleteBrdReply")
+	public void deleteBrdReply(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
+		System.out.println("deleteBrdReply param - " + param);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		Integer succ = commonService.deleteBrdReply(String.valueOf(param.get("replyNo")));
+		
+		resultMap.put("succ", succ);
 		
 		UtilEtc.responseJsonValue(response, resultMap);
 	}
