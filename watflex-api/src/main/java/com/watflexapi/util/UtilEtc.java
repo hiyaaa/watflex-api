@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UtilEtc {
 
 	/**
-     * JSON (String)을 문자열로 변환하여 클라이언트에 전송.
-     * AJax 용. 
+     * JSON (String).
+     * AJax. 
      */
     public static void responseJsonValue(HttpServletResponse response, Object value) {
         ObjectMapper mapper = new ObjectMapper();

@@ -200,9 +200,9 @@ public class CommonController {
 		UtilEtc.responseJsonValue(response, resultMap);
 	}
 	
-	/////////////////////////////////////////////////////////////////////////////// 여기부터는 영화진흥회 API
+	///////////////////////////////////////////////////////////////////////////////  API
 	
-	@RequestMapping(path = "/getComCodeList") //공통코드
+	@RequestMapping(path = "/getComCodeList")
 	public void getComCodeList(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
 		System.out.println("getComCodeList param - " + param);
 		
@@ -219,7 +219,7 @@ public class CommonController {
 		UtilEtc.responseJsonValue(response, resultMap);
 	}
 	
-	@RequestMapping(path = "/getDailyBoxOfficeList") //일별 박스오피스
+	@RequestMapping(path = "/getDailyBoxOfficeList")
 	public void getDailyBoxOffice(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
 		System.out.println("getDailyBoxOfficeList param - " + param);
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -244,7 +244,7 @@ public class CommonController {
 		UtilEtc.responseJsonValue(response, resultMap);
 	}
 	
-	@RequestMapping(path = "/getWeeklyBoxOffice") //주간/주말 박스오피스
+	@RequestMapping(path = "/getWeeklyBoxOffice")
 	public void getWeeklyBoxOffice(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
 		System.out.println("getWeeklyBoxOffice param - " + param);
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -269,7 +269,7 @@ public class CommonController {
 		UtilEtc.responseJsonValue(response, resultMap);
 	}
 	
-	@RequestMapping(path = "/getMovieList") //영화목록
+	@RequestMapping(path = "/getMovieList")
 	public void getMovieList(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
 		System.out.println("getMovieList param - " + param);
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -294,7 +294,7 @@ public class CommonController {
 		UtilEtc.responseJsonValue(response, resultMap);
 	}
 	
-	@RequestMapping(path = "/getMovieInfo") //영화상세
+	@RequestMapping(path = "/getMovieInfo")
 	public void getMovieInfo(HttpServletRequest request, HttpServletResponse response, @RequestParam HashMap<String, Object> param) throws Exception{
 		System.out.println("getMovieInfo param - " + param);
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
